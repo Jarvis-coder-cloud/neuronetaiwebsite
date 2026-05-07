@@ -18,7 +18,7 @@ export function FadeUp({
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
     </motion.div>
@@ -28,9 +28,11 @@ export function FadeUp({
 export function CountNumber({
   target,
   suffix = "",
+  className = "",
 }: {
   target: number;
   suffix?: string;
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.7 });
@@ -54,7 +56,7 @@ export function CountNumber({
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-6xl">
+    <div ref={ref} className={`text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-6xl ${className}`}>
       {value}
       {suffix}
     </div>

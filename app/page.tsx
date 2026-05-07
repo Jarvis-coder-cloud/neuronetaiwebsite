@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Sparkles } from "lucide-react";
-import { HeroShape } from "../components/hero-shape";
+import { Check } from "lucide-react";
 import { SiteShell } from "../components/site-shell";
 import { CountNumber, FadeUp } from "../components/ui";
 
@@ -55,6 +54,58 @@ function TypingInput() {
   );
 }
 
+function AgentOrbit() {
+  const nodes = [
+    { name: "Brand Agent", x: "50%", y: "12%" },
+    { name: "Dev Agent", x: "82%", y: "30%" },
+    { name: "Marketing Agent", x: "82%", y: "70%" },
+    { name: "Sales Agent", x: "18%", y: "70%" },
+    { name: "Ops Agent", x: "18%", y: "30%" },
+  ];
+
+  return (
+    <div className="relative mx-auto h-[420px] w-full max-w-4xl overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white p-6 shadow-[0_18px_60px_rgba(37,99,235,0.10)] md:h-[520px]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(219,234,254,0.45),rgba(255,255,255,0.96)_60%)]" />
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#DBEAFE]"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+      />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {nodes.map((node) => (
+          <line key={node.name} x1="50" y1="50" x2={node.x.replace("%", "")} y2={node.y.replace("%", "")} stroke="#DBEAFE" strokeWidth="0.35" />
+        ))}
+      </svg>
+
+      <motion.div
+        className="absolute inset-0 z-10 m-auto flex h-40 w-40 items-center justify-center rounded-full border border-[#BFDBFE] bg-[#EFF6FF] text-center shadow-[0_10px_30px_rgba(59,130,246,0.22)]"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <p className="px-4 text-base font-bold text-[#1D4ED8]">
+          Your
+          <br />
+          Company
+        </p>
+      </motion.div>
+
+      {nodes.map((node, i) => (
+        <motion.div
+          key={node.name}
+          className="absolute z-20 rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-sm font-semibold text-[#0A0A0A] shadow-[0_8px_24px_rgba(30,64,175,0.13)]"
+          style={{ left: node.x, top: node.y, transform: "translate(-50%, -50%)" }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: i * 0.08 }}
+        >
+          <span className="soft-gradient-text">{node.name}</span>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const openWaitlist = () => window.dispatchEvent(new Event("open-waitlist"));
   const scrollToSection = (id: string) => {
@@ -70,12 +121,12 @@ export default function Home() {
             <div className="mx-auto mb-8 inline-flex items-center rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-2 text-sm font-medium text-[#0A1628]">
               Introducing NeuroNet AI ✦
             </div>
-            <h1 className="mx-auto text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-[88px] md:leading-[0.98]">
+            <h1 className="mx-auto brand-gradient-text text-5xl font-extrabold tracking-tight md:text-[88px] md:leading-[0.98]">
               Your Business.
               <br />
               Built by AI.
             </h1>
-            <p className="mx-auto mt-6 max-w-[600px] text-lg text-[#6B7280] md:text-xl">
+            <p className="mx-auto mt-6 max-w-[600px] text-lg soft-gradient-text md:text-xl">
               Type one sentence. NeuroNet deploys 5 specialized AI agents - brand, dev, marketing, sales, ops. Your complete business, built overnight.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -108,7 +159,7 @@ export default function Home() {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="mb-5 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-3 text-sm text-[#6B7280]">
+              <div className="mb-5 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-3 text-sm soft-gradient-text">
                 Build me a legal AI startup in India...
               </div>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-5">
@@ -122,7 +173,6 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <HeroShape />
             </motion.div>
           </FadeUp>
         </section>
@@ -141,7 +191,7 @@ export default function Home() {
         <section id="product" className="scroll-mt-28 bg-[#F9FAFB] py-24">
           <div className="container-shell">
             <FadeUp>
-              <h2 className="text-4xl font-extrabold text-[#0A0A0A] md:text-6xl">How it works</h2>
+              <h2 className="brand-gradient-text text-4xl font-extrabold md:text-6xl">How it works</h2>
             </FadeUp>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               <FadeUp className="rounded-2xl border border-[#E5E7EB] bg-white p-6">
@@ -190,30 +240,51 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="agents" className="container-shell scroll-mt-28 py-24">
+        <section id="agents" className="scroll-mt-28 bg-[#F9FAFB] py-24">
+          <div className="container-shell">
           <FadeUp className="text-center">
-            <h2 className="text-4xl font-extrabold md:text-6xl">Meet your AI team.</h2>
-            <p className="mt-4 text-lg text-[#6B7280]">5 specialized agents, one shared mission.</p>
+            <h2 className="brand-gradient-text text-4xl font-extrabold md:text-6xl">Meet your AI team.</h2>
+            <p className="mt-4 text-lg soft-gradient-text">5 specialized agents, one shared mission.</p>
           </FadeUp>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {agents.map((agent, i) => (
-              <FadeUp key={agent.name} delay={i * 0.05}>
+          <div className="mt-12 grid items-start gap-7 lg:grid-cols-2">
+            <FadeUp>
+              <AgentOrbit />
+            </FadeUp>
+            <FadeUp className="grid gap-4 sm:grid-cols-2">
+              {agents.map((agent, i) => (
                 <motion.article
-                  className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
-                  whileHover={{ y: -6, borderColor: "#0066FF" }}
+                  key={agent.name}
+                  className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-[0_10px_30px_rgba(30,64,175,0.08)]"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.6, delay: i * 0.06 }}
+                  whileHover={{ y: -5, borderColor: "#93C5FD" }}
                 >
-                  <Sparkles className="text-[#0066FF]" />
-                  <h3 className="mt-4 text-2xl font-bold text-[#0A0A0A]">{agent.name}</h3>
-                  <p className="mt-3 text-[#6B7280]">{agent.desc}</p>
+                  <h3 className="text-lg font-bold brand-gradient-text">{agent.name}</h3>
+                  <p className="mt-2 text-sm text-[#4B5563]">{agent.desc}</p>
                 </motion.article>
-              </FadeUp>
-            ))}
+              ))}
+              <motion.div
+                className="rounded-2xl border border-[#DBEAFE] bg-[#EFF6FF] p-5 sm:col-span-2"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.65, delay: 0.3 }}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">Live orchestration</p>
+                <p className="mt-2 text-sm text-[#1F2937]">
+                  All five agents sync through one shared mission graph. Tasks, context, and decisions flow back to your company core in real time.
+                </p>
+              </motion.div>
+            </FadeUp>
+          </div>
           </div>
         </section>
 
         <section className="container-shell pb-24">
           <FadeUp className="text-center">
-            <h2 className="text-4xl font-extrabold md:text-6xl">You&apos;re always in control.</h2>
+            <h2 className="brand-gradient-text text-4xl font-extrabold md:text-6xl">You&apos;re always in control.</h2>
           </FadeUp>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <FadeUp className="rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] p-8">
@@ -246,15 +317,15 @@ export default function Home() {
         <section className="bg-[#F9FAFB] py-24">
           <div className="container-shell grid gap-10 text-center md:grid-cols-3">
             <FadeUp>
-              <CountNumber target={500} suffix="+" />
+              <CountNumber target={500} suffix="+" className="brand-gradient-text" />
               <p className="mt-3 text-[#6B7280]">founders waiting</p>
             </FadeUp>
             <FadeUp delay={0.08}>
-              <CountNumber target={5} />
+              <CountNumber target={5} className="brand-gradient-text" />
               <p className="mt-3 text-[#6B7280]">AI agents per build</p>
             </FadeUp>
             <FadeUp delay={0.12}>
-              <div className="text-5xl font-extrabold md:text-6xl">&lt;24hrs</div>
+              <div className="brand-gradient-text text-5xl font-extrabold md:text-6xl">&lt;24hrs</div>
               <p className="mt-3 text-[#6B7280]">to complete business</p>
             </FadeUp>
           </div>
@@ -262,7 +333,7 @@ export default function Home() {
 
         <section id="pricing" className="container-shell scroll-mt-28 py-24">
           <FadeUp className="text-center">
-            <h2 className="text-4xl font-extrabold md:text-6xl">Simple, transparent pricing.</h2>
+            <h2 className="brand-gradient-text text-4xl font-extrabold md:text-6xl">Simple, transparent pricing.</h2>
           </FadeUp>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <article className="rounded-2xl border border-[#E5E7EB] bg-white p-8">
@@ -306,8 +377,8 @@ export default function Home() {
 
         <section className="bg-[#F9FAFB] py-24">
           <FadeUp className="container-shell text-center">
-            <h2 className="text-5xl font-extrabold tracking-tight md:text-7xl">Start building today.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-[#6B7280]">Your AI team is ready and waiting.</p>
+            <h2 className="brand-gradient-text text-5xl font-extrabold tracking-tight md:text-7xl">Start building today.</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg soft-gradient-text">Your AI team is ready and waiting.</p>
             <button onClick={openWaitlist} className="mt-8 h-14 rounded-full bg-[#0A1628] px-8 text-base font-semibold text-white">
               Get Early Access →
             </button>

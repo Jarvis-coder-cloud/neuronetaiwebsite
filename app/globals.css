@@ -33,3 +33,17 @@ a {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+
+.brand-gradient-text {
+  background: linear-gradient(110deg, #1d4ed8 0%, #3b82f6 40%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.soft-gradient-text {
+  background: linear-gradient(110deg, #2563eb 0%, #60a5fa 55%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
