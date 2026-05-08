@@ -1,24 +1,20 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Cpu } from "lucide-react";
 import { SiteShell } from "../../components/site-shell";
 import { FadeUp } from "../../components/ui";
+import { PageCTA, SectionTitle } from "../../components/page-primitives";
 
 export default function ProductPage() {
   return (
     <SiteShell>
       <main className="bg-white">
         <section className="container-shell py-20 md:py-28">
-          <FadeUp className="mx-auto max-w-4xl text-center">
-            <span className="inline-flex rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-2 text-sm font-medium text-[#0A1628]">
-              NeuroNet Platform
-            </span>
-            <h1 className="mt-6 text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-7xl">
-              One sentence in.
-              <br />
-              Full business out.
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-[#6B7280]">
-              NeuroNet AI orchestrates five specialist agents into one execution engine so your business idea ships as a real operating company.
-            </p>
+          <FadeUp>
+            <SectionTitle
+              icon={<Cpu size={16} />}
+              eyebrow="NeuroNet Platform"
+              title="One sentence in. Full business out."
+              subtitle="NeuroNet AI orchestrates five specialist agents into one execution engine so your business idea ships as a real operating company."
+            />
           </FadeUp>
         </section>
 
@@ -66,6 +62,7 @@ export default function ProductPage() {
             ))}
           </div>
         </section>
+        <PageCTA />
       </main>
     </SiteShell>
   );

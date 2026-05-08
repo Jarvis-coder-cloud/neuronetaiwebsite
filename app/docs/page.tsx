@@ -1,20 +1,21 @@
 import Link from "next/link";
 import { SiteShell } from "../../components/site-shell";
 import { FadeUp } from "../../components/ui";
+import { PageCTA, SectionTitle } from "../../components/page-primitives";
+import { BookOpen } from "lucide-react";
 
 export default function DocsPage() {
   return (
     <SiteShell>
       <main className="bg-white">
         <section className="container-shell py-20 md:py-28">
-          <FadeUp className="mx-auto max-w-4xl text-center">
-            <span className="inline-flex rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-4 py-2 text-sm font-medium text-[#0A1628]">
-              Documentation
-            </span>
-            <h1 className="mt-6 text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-7xl">Build fast with clarity.</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-[#6B7280]">
-              Setup guides, API references, and operating playbooks to launch with NeuroNet AI in production.
-            </p>
+          <FadeUp>
+            <SectionTitle
+              icon={<BookOpen size={16} />}
+              eyebrow="Documentation"
+              title="Build fast with clarity."
+              subtitle="Setup guides, API references, and operating playbooks to launch with NeuroNet AI in production."
+            />
           </FadeUp>
         </section>
 
@@ -71,6 +72,7 @@ export default function DocsPage() {
             </Link>
           </FadeUp>
         </section>
+        <PageCTA title="Build with confidence." subtitle="Follow docs, deploy faster, and turn prompts into production-ready startup systems." />
       </main>
     </SiteShell>
   );

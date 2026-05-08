@@ -11,9 +11,17 @@ const navLinks = [
   { href: "/product", label: "Product" },
   { href: "/agents", label: "Agents" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/docs", label: "Docs" },
   { href: "/company", label: "Company" },
+];
+const footerLinks = [
+  { href: "/product", label: "Product" },
+  { href: "/agents", label: "Agents" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/company", label: "Company" },
+  { href: "/docs", label: "Docs" },
   { href: "/legal", label: "Legal" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-of-service", label: "Terms of Service" },
 ];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
@@ -37,8 +45,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 transition ${
-          scrolled ? "border-b border-[#E5E7EB] bg-white/80 backdrop-blur-md" : "bg-white"
+        className={`sticky top-0 z-40 smooth-transition ${
+          scrolled ? "border-b border-[#E5E7EB]/60 glass-blur shadow-lg" : "bg-white"
         }`}
       >
         <div className="container-shell flex h-20 items-center justify-between">
@@ -54,7 +62,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   ? `/#${link.label.toLowerCase()}`
                   : link.href;
               return (
-                <Link key={link.href} href={href} className="text-sm text-[#6B7280] transition hover:text-[#0A0A0A]">
+                <Link key={link.href} href={href} className="text-sm text-[#6B7280] smooth-transition hover:text-[#0A0A0A] hover:font-medium">
                   {link.label}
                 </Link>
               );
@@ -64,7 +72,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           <div className="hidden md:block">
             <button
               onClick={() => setOpenModal(true)}
-              className="h-12 rounded-full bg-[#0A1628] px-5 text-sm font-semibold text-white"
+              className="group h-12 rounded-full bg-[#0A1628] px-5 text-sm font-semibold text-white smooth-transition hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
             >
               Get Early Access
             </button>
@@ -76,7 +84,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         </div>
 
         {openMenu ? (
-          <div className="border-t border-[#E5E7EB] bg-white p-5 md:hidden">
+          <div className="animate-slide-up border-t border-[#E5E7EB]/60 glass-blur p-5 md:hidden">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => {
                 const href =
@@ -94,7 +102,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   setOpenMenu(false);
                   setOpenModal(true);
                 }}
-                className="mt-1 h-12 rounded-full bg-[#0A1628] text-sm font-semibold text-white"
+                className="mt-1 h-12 rounded-full bg-[#0A1628] text-sm font-semibold text-white smooth-transition hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
               >
                 Get Early Access
               </button>
@@ -103,7 +111,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         ) : null}
       </header>
       {children}
-      <footer className="border-t border-[#E5E7EB] bg-white">
+      <footer className="border-t border-[#E5E7EB]/40 glass-blur bg-white/50 backdrop-blur-md">
         <div className="container-shell flex flex-col justify-between gap-8 py-12 md:flex-row md:items-start">
           <div>
             <div className="flex items-center gap-3">
@@ -114,7 +122,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             <p className="mt-1 text-sm text-[#6B7280]">neuronetai1@gmail.com</p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-[#6B7280]">
-            {navLinks.map((link) => (
+            {footerLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}
               </Link>
