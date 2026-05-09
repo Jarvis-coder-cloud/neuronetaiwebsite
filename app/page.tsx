@@ -551,48 +551,17 @@ export default function Home() {
                 </ul>
                 <p className="mt-8 text-sm font-semibold uppercase tracking-widest text-[#9CA3AF]">Coming Soon</p>
               </motion.article>
-              <motion.articlegradient-to-b from-white via-[#F8FAFF] to-[#F3F7FF] py-28">
-          <div className="container-shell">
-            <FadeUp className="text-center">
-              <motion.h2
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="text-5xl font-extrabold tracking-tight text-[#0A0A0A] md:text-7xl"
+              <motion.article
+                className="glass-panel smooth-transition relative rounded-3xl border-2 border-[#3B82F6]/50 bg-gradient-to-br from-[#EFF6FF] to-white p-8 hover:border-[#3B82F6]/70 hover:shadow-xl"
+                whileHover={{ y: -6 }}
+                transition={{ delay: 0.08 }}
               >
-                Start building today.
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="mx-auto mt-5 max-w-xl text-lg text-[#6B7280]"
-              >
-                Your AI team is ready and waiting.
-              </motion.p>
-              <motion.button
-                onClick={openWaitlist}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="group mt-10 h-14 rounded-full bg-[#0A1628] px-10 text-base font-semibold text-white smooth-transition hover:shadow-lg hover:shadow-blue-500/40"
-              >
-                Get Early Access →
-              </motion.button>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="mt-5 text-sm text-[#9CA3AF]"
-              >
-                No credit card required
-              </motion.p>
-            </FadeUp>
-          </divtransition={{ duration: 2, repeat: Infinity }}
+                <motion.div
+                  className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[#0A1628] px-4 py-2 text-xs font-bold uppercase tracking-widest text-white"
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
-                  ⭐ MOST POPULAR
+                  Most popular
                 </motion.div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#2563EB]">Growth</p>
                 <h3 className="mt-4 text-4xl font-extrabold text-[#0A0A0A]">$99<span className="text-xl text-[#6B7280]">/month</span></h3>
